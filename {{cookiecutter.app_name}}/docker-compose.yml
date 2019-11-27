@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  {{ cookiecutter.app_name }}-postgres:
+    image: postgres:12-alpine
+    ports:
+      - 5432:5432
+    environment:
+      APP_PASSWORD: "postgres"
+      MIGRATOR_PASSWORD: "postgres"
+    volumes:
+      - ./docker/{{ cookiecutter.app_name }}-postgres/init:/docker-entrypoint-initdb.d/
+      - ./data/{{ cookiecutter.app_name }}-postgres:/var/lib/postgresql/data
+
+  {{ cookiecutter.app_name }}-client:
+    build:
+      context: .
+      dockerfile: ./docker/{{ cookiecutter.app_name }}-client/Dockerfile
+    volumes:
+      - .:/app
+      - /app/node_modules
+
+  {{ cookiecutter.app_name }}-server:
+    build:
+      context: .
+      dockerfile: ./docker/{{ cookiecutter.app_name }}-server/Dockerfile
+    environment:
+      - FLASK_APP={{ cookiecutter.app_name }}
+      - FLASK_DEBUG=1
+      - APP_ENVIRONMENT=dev
+      - PGPASSWORD=postgres
+      - APP_PASSWORD=postgres
+      - MIGRATOR_PASSWORD=postgres
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/app

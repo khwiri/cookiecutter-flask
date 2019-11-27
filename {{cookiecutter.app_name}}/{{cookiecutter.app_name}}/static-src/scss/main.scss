@@ -1,0 +1,43 @@
+$body-color-test: #0f1108;
+$button-color: #d527d5;
+
+body {
+    background-color: $body-color-test;
+}
+
+button {
+    position: relative;
+    background-color: $button-color;
+    color: #fff;
+    border: 0;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 150ms linear;
+    outline: none;
+    user-select: none;
+
+    &:hover {
+        background-color: darken($button-color, 5%);
+        box-shadow: 2px 2px 2px #000;
+    }
+
+    &:active {
+        top: 2px;
+        box-shadow: none;
+    }
+}
+
+.content {
+    margin: 100px auto 0 auto;
+    width: 640px;
+
+    &.pug-page {
+        display: flex;
+        flex-direction: column;
+
+        img {
+            margin-bottom: 8px;
+        }
+    }
+}

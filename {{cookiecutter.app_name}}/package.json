@@ -1,0 +1,28 @@
+{
+  "name": "cookiecutter-flask",
+  "version": "0.0.1",
+  "description": "",
+  "license": "ISC",
+  "private": true,
+  "scripts": {
+    "start": "npm-run-all --sequential build:** --parallel watch:** flask",
+    "build": "run-p build:**",
+    "build:js:app": "webpack",
+    "build:css:app": "node build.js appCSS",
+    "build:copy:app": "node build.js appCopy",
+    "watch": "run-p watch:**",
+    "watch:js:app": "npm run build:js:app -- --watch",
+    "watch:css:app": "npm run build:css:app -- --watch"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "copyfiles": "^2.1.1",
+    "node-sass": "^4.13.0",
+    "npm-run-all": "^4.1.5",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "yargs": "^14.2.0"
+  }
+}

@@ -1,0 +1,10 @@
+{% raw %}
+{% extends "base.html" %}
+
+{% block content_class %}pug-page{% endblock content_class %}
+
+{% block content %}
+    <img class="pug" src="{{ url_for('static', filename='img/pug1.jpg') }}"/>
+    <button class="click-me">Click Me</button>
+{% endblock %}
+{% endraw %}
