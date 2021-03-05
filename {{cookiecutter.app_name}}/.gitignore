@@ -1,6 +1,5 @@
 .vscode/
 
-data/
 instance/
 node_modules/
 **/static/
