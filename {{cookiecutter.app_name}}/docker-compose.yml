@@ -1,5 +1,8 @@
 version: "3"
 
+volumes:
+  {{ cookiecutter.app_name }}-postgres-data:
+
 services:
   {{ cookiecutter.app_name }}-postgres:
     image: postgres:12-alpine
@@ -7,10 +10,11 @@ services:
       - 5432:5432
     environment:
       APP_PASSWORD: "postgres"
+      POSTGRES_PASSWORD: "postgres"
       MIGRATOR_PASSWORD: "postgres"
     volumes:
       - ./docker/{{ cookiecutter.app_name }}-postgres/init:/docker-entrypoint-initdb.d/
-      - ./data/{{ cookiecutter.app_name }}-postgres:/var/lib/postgresql/data
+      - {{ cookiecutter.app_name }}-postgres-data:/var/lib/postgresql/data
 
   {{ cookiecutter.app_name }}-client:
     build:
