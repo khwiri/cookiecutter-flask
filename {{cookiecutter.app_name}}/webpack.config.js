@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
     mode: 'production',
-    devtool: 'source-maps',
+    devtool: 'cheap-source-map',
     entry: {
         main: './{{ cookiecutter.app_name }}/static-src/js/main.js',
     },
@@ -19,7 +19,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['babel-preset-env'],
+                        presets: ['@babel/preset-env'],
                     },
                 },
             },
