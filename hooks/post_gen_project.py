@@ -7,8 +7,6 @@ PROJECT_ROOT = Path('.')
 
 
 def lf_line_endings_required_files() -> Iterable[PosixPath]:
-    yield PROJECT_ROOT / '.python-version'
-    yield PROJECT_ROOT / '.nvmrc'
     yield from PROJECT_ROOT.glob('**/*.sh')
 
 

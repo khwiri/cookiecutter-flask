@@ -1,28 +1,21 @@
-FROM registry.gitlab.com/khwiri/docker-images/nvm:0.34.0 as client_builder
+FROM node:{{ cookiecutter.node_version }} as client_builder
 
 WORKDIR /app
 
-COPY package.json package-lock.json .nvmrc webpack.config.js build.js ./
+COPY package.json package-lock.json webpack.config.js build.js ./
 COPY ./{{ cookiecutter.app_name }}/static-src/ ./{{ cookiecutter.app_name }}/static-src/
 
-RUN bash -c "source /root/.bashrc && \
-    nvm install && \
-    nvm alias default $(cat .nvmrc) && \
-    nvm use default && \
-    npm install && \
-    npm run build"
+RUN npm install && npm run build
 
 
-FROM registry.gitlab.com/khwiri/docker-images/pyenv:1.2.13
+FROM python:{{ cookiecutter.python_version }}
 
 WORKDIR /app
 
 RUN apt update --yes && apt install --yes libpq-dev postgresql-client
 
-COPY ./Pipfile ./Pipfile.lock ./.python-version ./
-RUN pyenv install --force "$(cat .python-version)" && \
-    pip install --upgrade pipenv && \
-    pipenv sync --dev
+COPY ./Pipfile ./Pipfile.lock ./
+RUN pip install --upgrade pipenv && pipenv sync --dev
 
 COPY --from=client_builder /app/{{ cookiecutter.app_name }}/static/ ./{{ cookiecutter.app_name }}/static/
 
