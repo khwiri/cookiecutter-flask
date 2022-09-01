@@ -14,11 +14,11 @@ function spawn(command, options) {
 function nodeSass({ input, output, compressed='compressed', sourceMaps=true, watch=false } = {}) {
     const args = [];
 
-    args.push(...(compressed ? ['--output-style', compressed] : []));
-    args.push(...(sourceMaps ? ['--source-map', path.dirname(output)] : []));
+    args.push(...(compressed ? ['--style', compressed] : []));
+    args.push(...(sourceMaps ? ['--source-map'] : []));
     args.push(...(watch ? ['--watch'] : []));
 
-    spawn(['node-sass', ...args, input, output].join(' '));
+    spawn(['sass', ...args, input, output].join(' '));
 }
 
 
