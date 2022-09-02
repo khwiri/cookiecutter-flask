@@ -7,3 +7,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Security
 - Update Python Dependencies with Security Vulnerabilities https://github.com/khwiri/cookiecutter-flask/pull/19
+- Update NPM Dependencies with Security Vulnerabilities https://github.com/khwiri/cookiecutter-flask/pull/20
