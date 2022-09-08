@@ -6,7 +6,7 @@ pushd "$(dirname "$(cd "$(dirname "$0")" && pwd)")" > /dev/null || exit 1
 compose_up()
 {
     pushd output/app > /dev/null || exit 1
-    docker compose up --detach &> /dev/null
+    docker compose up --detach
     popd > /dev/null || exit 1
 }
 
@@ -19,7 +19,7 @@ compose_down()
 
 app_service_is_ready()
 {
-    pipenv run http --check-status :5000 &> /dev/null
+    pipenv run http --check-status :5000
     return $?
 }
 
