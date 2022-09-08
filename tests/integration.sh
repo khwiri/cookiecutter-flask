@@ -19,7 +19,7 @@ compose_down()
 
 app_service_is_ready()
 {
-    pipenv run http --check-status :5000
+    pipenv run http --check-status GET :5000
     return $?
 }
 
