@@ -6,7 +6,7 @@ pushd "$(dirname "$(cd "$(dirname "$0")" && pwd)")" > /dev/null || exit 1
 compose_up()
 {
     pushd output/app > /dev/null || exit 1
-    docker compose up --detach
+    docker compose up --detach &> /dev/null
     popd > /dev/null || exit 1
 }
 
@@ -62,7 +62,7 @@ do
 done
 printf "\e[32mpassed\e[0m\n"
 
-printf "\e[33mTest Static Files\e[0m"
+printf "\e[33mTest Static Files[32m...\e[0m"
 STATIC_FILES=(
     "./output/app/app/static/css/main.min.css"
     "./output/app/app/static/css/main.min.css.map"
@@ -76,6 +76,12 @@ do
     if [[ ! -f "$STATIC_FILE" ]]; then
         printf "\e[31mfailed\e[0m\n"
         printf "  \"%s\" does not exist\n" "$STATIC_FILE"
+        ls -l
+        ls -l ./output
+        ls -l ./output/app
+        ls -l ./output/app/app
+        ls -l ./output/app/app/static
+        ls -l ./output/app/app/static/css
         cleanup
         printf "\e[31mFAILED!\e[0m\n\n"
         exit 1
