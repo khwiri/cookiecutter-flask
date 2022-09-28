@@ -21,7 +21,7 @@ services:
       context: .
       dockerfile: ./docker/{{ cookiecutter.app_name }}-client/Dockerfile
     volumes:
-      - .:/app:z
+      - .:/app
       - /app/node_modules
 
   {{ cookiecutter.app_name }}-server:
