@@ -55,30 +55,34 @@ printf "\n\e[33mTest Cookiecutter Build\e[32m...\e[0m"
 pipenv run build &> /dev/null || { printf "\e[31mfailed\e[0m\n"; on_error; }
 printf "\e[32mok\e[0m\n"
 
-printf "\e[33mTest Containers Up\e[32m...\e[0m"
-compose_up || { printf "\e[31mfailed\e[0m\n"; on_error; }
-printf "\e[32mok\e[0m\n"
+# printf "\e[33mTest Containers Up\e[32m...\e[0m"
+# compose_up || { printf "\e[31mfailed\e[0m\n"; on_error; }
+# printf "\e[32mok\e[0m\n"
 
-printf "\e[33mTest Resources\e[32m...\e[0m"
-RESOURCE_TESTS=(
-    "/"
-    "/static/css/main.min.css"
-    "/static/css/main.min.css.map"
-    "/static/js/main.min.js"
-    "/static/js/main.min.js.map"
-    "/static/img/pug1.jpg"
-    "/static/img/pug2.jpg"
-)
-for RESOURCE_TEST in "${RESOURCE_TESTS[@]}"
-do
-    wait_for_resource "$RESOURCE_TEST" || {
-        printf "\e[31mfailed\e[0m\n";
-        printf "  \"%s\" does not exist\n" "$RESOURCE_TEST";
-        on_error;
-    }
-    printf "\e[32m.\e[0m"
-done
-printf "\e[32mok\e[0m\n"
+pushd output/app &> /dev/null
+docker compose run app-client npm --verbose run build
+popd
+
+# printf "\e[33mTest Resources\e[32m...\e[0m"
+# RESOURCE_TESTS=(
+#     "/"
+#     "/static/css/main.min.css"
+#     "/static/css/main.min.css.map"
+#     "/static/js/main.min.js"
+#     "/static/js/main.min.js.map"
+#     "/static/img/pug1.jpg"
+#     "/static/img/pug2.jpg"
+# )
+# for RESOURCE_TEST in "${RESOURCE_TESTS[@]}"
+# do
+#     wait_for_resource "$RESOURCE_TEST" || {
+#         printf "\e[31mfailed\e[0m\n";
+#         printf "  \"%s\" does not exist\n" "$RESOURCE_TEST";
+#         on_error;
+#     }
+#     printf "\e[32m.\e[0m"
+# done
+# printf "\e[32mok\e[0m\n"
 
 cleanup
 
