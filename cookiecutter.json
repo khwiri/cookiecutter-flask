@@ -3,5 +3,5 @@
 	"app_name": "{{cookiecutter.project_name.lower().replace('-', '_').replace(' ', '_')}}",
 	"project_short_description": "This is my app.",
     "__python_version": "3.10.2",
-    "__node_version": "16.17.0"
+    "__node_version": "18.12.1"
 }
