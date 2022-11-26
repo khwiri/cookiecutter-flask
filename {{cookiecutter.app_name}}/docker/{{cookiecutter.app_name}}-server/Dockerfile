@@ -1,4 +1,4 @@
-FROM node:{{ cookiecutter.node_version }} as client_builder
+FROM node:{{ cookiecutter.__node_version }} as client_builder
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ COPY ./{{ cookiecutter.app_name }}/static-src/ ./{{ cookiecutter.app_name }}/sta
 RUN npm install && npm run build
 
 
-FROM python:{{ cookiecutter.python_version }}
+FROM python:{{ cookiecutter.__python_version }}
 
 WORKDIR /app
 

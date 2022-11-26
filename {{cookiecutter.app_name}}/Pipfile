@@ -14,4 +14,4 @@ flask-migrate = "*"
 psycopg2 = "*"
 
 [requires]
-python_full_version = "{{ cookiecutter.python_version }}"
+python_full_version = "{{ cookiecutter.__python_version }}"

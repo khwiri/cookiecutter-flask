@@ -1,4 +1,4 @@
-FROM node:{{ cookiecutter.node_version }} as client_builder
+FROM node:{{ cookiecutter.__node_version }} as client_builder
 
 WORKDIR /app
 
