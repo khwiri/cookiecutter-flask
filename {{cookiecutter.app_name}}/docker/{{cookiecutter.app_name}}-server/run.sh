@@ -4,7 +4,6 @@ set -e # exit when any commands fail
 database_is_ready()
 {
     psql --quiet --host={{ cookiecutter.app_name }}-postgres --username=postgres --dbname={{ cookiecutter.app_name }} --command='\q' >/dev/null 2>&1
-    return $?
 }
 
 until database_is_ready
