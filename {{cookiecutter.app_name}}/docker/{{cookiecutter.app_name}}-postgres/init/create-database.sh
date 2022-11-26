@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -e # exit when any commands fail
 
 psql << EOF
