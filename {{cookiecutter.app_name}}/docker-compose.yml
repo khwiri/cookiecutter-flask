@@ -28,6 +28,8 @@ services:
     build:
       context: .
       dockerfile: ./docker/{{ cookiecutter.app_name }}-server/Dockerfile
+    depends_on:
+      - {{ cookiecutter.app_name }}-postgres
     environment:
       - FLASK_APP={{ cookiecutter.app_name }}
       - FLASK_DEBUG=1
