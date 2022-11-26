@@ -16,4 +16,4 @@ printf "\\e[32mrunning database migrations...\\n\\e[0m"
 pipenv run python -m flask db upgrade
 
 printf "\\e[32mstarting {{ cookiecutter.app_name }}...\\n\\e[0m"
-pipenv run python -m flask run --host 0.0.0.0
+pipenv run python -m flask --debug run --host 0.0.0.0

@@ -9,9 +9,9 @@ services:
     ports:
       - 5432:5432
     environment:
-      APP_PASSWORD: "postgres"
-      POSTGRES_PASSWORD: "postgres"
-      MIGRATOR_PASSWORD: "postgres"
+      APP_PASSWORD: postgres
+      POSTGRES_PASSWORD: postgres
+      MIGRATOR_PASSWORD: postgres
     volumes:
       - ./docker/{{ cookiecutter.app_name }}-postgres/init:/docker-entrypoint-initdb.d/
       - {{ cookiecutter.app_name }}-postgres-data:/var/lib/postgresql/data
@@ -31,12 +31,11 @@ services:
     depends_on:
       - {{ cookiecutter.app_name }}-postgres
     environment:
-      - FLASK_APP={{ cookiecutter.app_name }}
-      - FLASK_DEBUG=1
-      - APP_ENVIRONMENT=dev
-      - PGPASSWORD=postgres
-      - APP_PASSWORD=postgres
-      - MIGRATOR_PASSWORD=postgres
+      FLASK_APP: {{ cookiecutter.app_name }}
+      APP_ENVIRONMENT: dev
+      PGPASSWORD: postgres
+      APP_PASSWORD: postgres
+      MIGRATOR_PASSWORD: postgres
     ports:
       - 5000:5000
     volumes:
