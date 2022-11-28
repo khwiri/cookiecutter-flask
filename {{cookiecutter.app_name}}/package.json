@@ -5,7 +5,7 @@
   "license": "ISC",
   "private": true,
   "scripts": {
-    "start": "npm-run-all --sequential build:** --parallel watch:** flask",
+    "start": "npm-run-all --sequential build:** --parallel watch:**",
     "build": "run-p build:**",
     "build:js:app": "webpack",
     "build:css:app": "node build.js appCSS",

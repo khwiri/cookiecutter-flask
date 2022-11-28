@@ -28,6 +28,9 @@ services:
     build:
       context: .
       dockerfile: ./docker/{{ cookiecutter.app_name }}-server/Dockerfile
+      {% if cookiecutter.use_devcontainers == 'Yes' %}args:
+        - DEV_CONTAINERS=1
+        - DEV_NODE_VERSION={{ cookiecutter.__node_version }}{% endif %}
     depends_on:
       - {{ cookiecutter.app_name }}-postgres
     environment:
@@ -40,3 +43,4 @@ services:
       - 5000:5000
     volumes:
       - .:/app
+      {% if cookiecutter.use_devcontainers == 'Yes' %}- /app/node_modules{% endif %}
